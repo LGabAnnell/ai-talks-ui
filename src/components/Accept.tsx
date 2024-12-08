@@ -5,7 +5,7 @@ import { updateConversationId, updateMessages } from "../store/reducers/input-ac
 
 export const Accept = () => {
   const {
-    systemInstructions,
+    modelInfos,
     initialMessage
   } = useSelector((state: RootState) => state.inputStateReducer)
   const dispatch: AppDispatch = useDispatch();
@@ -13,7 +13,7 @@ export const Accept = () => {
     <div>
       <button onClick={() =>
         doInitialRequest(
-          systemInstructions,
+          modelInfos.find(modelInfo => modelInfo.type === 'user')?.systemInstructions ?? "",
           initialMessage
         ).then(result => {
           dispatch(updateMessages(result));
