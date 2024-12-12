@@ -14,7 +14,7 @@ const inputSlice = createSlice({
 
       state.modelInfos = state.modelInfos.map(modelInfo => {
         if (modelInfo.type === action.payload.type) {
-          return action.payload;
+          return { ...modelInfo, ...action.payload };
         }
         return modelInfo;
       });

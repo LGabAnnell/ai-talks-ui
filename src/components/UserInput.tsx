@@ -1,24 +1,10 @@
 import { AppDispatch } from "../store";
 import { useDispatch } from "react-redux";
 import { updateInitialMessage, updateModelInfos } from "../store/reducers/input-action-reducers.ts";
-import { useEffect } from "react";
 
 export const UserInput = () => {
 
   const dispatch: AppDispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(updateModelInfos({
-      model: 'llama3',
-      type: "user",
-      systemInstructions: ''
-    }));
-    dispatch(updateModelInfos({
-      model: 'llama3',
-      type: "assistant",
-      systemInstructions: ''
-    }))
-  });
 
   return <div className={'d-flex gap-2 w-100'}>
     <div className={'d-flex flex-column gap-2'}>
@@ -52,6 +38,13 @@ export const UserInput = () => {
       <label htmlFor={'user-input'}>User Input</label>
       <textarea id={'user-input'}
                 onInput={event => dispatch(updateInitialMessage(event.currentTarget.value))}></textarea>
+      <label htmlFor={'other-instructions'}>Instructions for second model</label>
+      <textarea id={'other-instructions'} onInput={event => dispatch(updateModelInfos(
+        {
+          type: "assistant",
+          systemInstructions: event.currentTarget.value
+        }
+      ))}></textarea>
     </div>
   </div>;
 };

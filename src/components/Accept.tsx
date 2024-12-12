@@ -16,7 +16,8 @@ export const Accept = () => {
                     modelInfos.find(modelInfo => modelInfo.type === 'user')?.model ?? "",
                     modelInfos.find(modelInfo => modelInfo.type === 'assistant')?.model ?? "",
                     modelInfos.find(modelInfo => modelInfo.type === 'user')?.systemInstructions ?? "",
-                    initialMessage
+                    initialMessage,
+                    modelInfos.find(modelInfo => modelInfo.type === 'assistant')?.systemInstructions ?? ""
                 ).then(result => {
                     dispatch(updateMessages(result));
                     dispatch(updateConversationId(result.conversationId));

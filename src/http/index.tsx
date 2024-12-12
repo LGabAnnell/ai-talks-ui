@@ -1,12 +1,13 @@
 import {defaultRequest} from "../model/initial-request.ts";
 import {InitialResponse} from "../model/initial-response.ts";
-import {ContinuationResponse} from "../model/continuation-response.ts"; // Ensure to import your RootState type
+import {ContinuationResponse} from "../model/continuation-response.ts";
 
 export const doInitialRequest = async (
     assistantModel: string,
     userModel: string,
     systemInstructions: string,
-    initialMessage: string
+    initialMessage: string,
+    userInstructions: string
 ): Promise<InitialResponse> => {
     return await fetch('http://localhost:8080/initiate', {
         method: 'POST',
@@ -17,6 +18,7 @@ export const doInitialRequest = async (
             ...defaultRequest,
             assistantModel: assistantModel,
             userModel: userModel,
+            userInstructions: userInstructions,
             systemInstructions: systemInstructions,
             message: initialMessage
         })
