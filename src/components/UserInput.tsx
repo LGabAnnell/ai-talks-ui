@@ -35,7 +35,7 @@ export const UserInput = () => {
         <option value="llama3">Llama3</option>
         <option value="mixtral">mixtral</option>
       </select>
-      <label htmlFor={'user-input'}>User Input</label>
+      <label htmlFor={'user-input'}>Write something to start the conversation!</label>
       <textarea id={'user-input'}
                 onInput={event => dispatch(updateInitialMessage(event.currentTarget.value))}></textarea>
       <label htmlFor={'other-instructions'}>Instructions for second model</label>
