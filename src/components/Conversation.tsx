@@ -2,6 +2,7 @@ import { nextRequest } from "../http";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../store";
 import { updateMessages } from "../store/reducers/input-action-reducers.ts";
+import Markdown from "react-markdown";
 
 export const MessageDisplay = (props: { message: string, model: string }) => {
   const { message, model } = props;
@@ -9,7 +10,7 @@ export const MessageDisplay = (props: { message: string, model: string }) => {
     <h5>
       {model}
     </h5>
-    <p className={'text-start'}>{message}</p>
+    <Markdown className={'text-start'}>{message}</Markdown>
   </>;
 };
 

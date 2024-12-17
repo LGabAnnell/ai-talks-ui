@@ -9,6 +9,7 @@ export type ModelInfos = {
   model?: string;
   systemInstructions?: string;
   type?: ModelType;
+  nickName?: string;
 }
 
 export type InputState = {

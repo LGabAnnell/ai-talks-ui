@@ -27,6 +27,13 @@ const inputSlice = createSlice({
     },
     updateInitialMessage(state: InputState, action: PayloadAction<string>) {
       state.initialMessage = action.payload;
+    },
+    resetState(state: InputState) {
+      return {
+        ...initialInputState,
+        modelInfos: state.modelInfos,
+        initialMessage: state.initialMessage,
+      };
     }
   }
 });
@@ -35,7 +42,8 @@ export const {
   updateInitialMessage,
   updateModelInfos,
   updateMessages,
-  updateConversationId
+  updateConversationId,
+    resetState
 } = inputSlice.actions;
 
 export const inputStateReducer = inputSlice.reducer;
