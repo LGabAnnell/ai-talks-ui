@@ -7,7 +7,9 @@ export const doInitialRequest = async (
     userModel: string,
     systemInstructions: string,
     initialMessage: string,
-    userInstructions: string
+    userInstructions: string,
+    userModelNickName: string = '',
+    assistantModelNickName: string = ''
 ): Promise<InitialResponse> => {
     return await fetch('http://localhost:8080/initiate', {
         method: 'POST',
@@ -20,7 +22,9 @@ export const doInitialRequest = async (
             userModel: userModel,
             userInstructions: userInstructions,
             systemInstructions: systemInstructions,
-            message: initialMessage
+            message: initialMessage,
+            userModelNickname: userModelNickName,
+            assistantModelNickname: assistantModelNickName,
         })
     }).then(response => response.json());
 };

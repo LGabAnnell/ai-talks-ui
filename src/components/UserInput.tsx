@@ -9,7 +9,10 @@ export const UserInput = () => {
     return <div className={'d-flex gap-2 w-100'}>
         <div className={'d-flex flex-column gap-2'}>
             <label htmlFor={'usermodel-nickname'}>Model nickname</label>
-            <input id={'usermodel-nickname'}/>
+            <input id={'usermodel-nickname'} onInput={event => dispatch(updateModelInfos({
+                nickName: event.currentTarget.value,
+                type: "user"
+            }))}/>
             <select name="usermodel-select" id="usermodel-select" onChange={(event) => dispatch(updateModelInfos(
                 {
                     type: "user",
@@ -29,7 +32,10 @@ export const UserInput = () => {
         </div>
         <div className={'d-flex flex-column gap-2'}>
             <label htmlFor={'assistant-model-nickname'}>Model nickname</label>
-            <input id={'assistant-model-nickname'} />
+            <input id={'assistant-model-nickname'} onInput={event => dispatch(updateModelInfos({
+                type: "assistant",
+                nickName: event.currentTarget.value
+            }))} />
             <select name="assistantmodel-select" id="assistantmodel-select"
                     onChange={event => dispatch(updateModelInfos(
                         {

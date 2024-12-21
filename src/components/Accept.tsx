@@ -11,17 +11,22 @@ export const Accept = () => {
     } = useSelector((state: RootState) => state.inputStateReducer)
     const dispatch: AppDispatch = useDispatch();
     const [conversationStarted, setConversationStarted] = useState<boolean>(true);
+
+    const userModel = modelInfos.find(modelInfo => modelInfo.type === 'user');
+    const assistantModel = modelInfos.find(modelInfo => modelInfo.type === 'assistant');
     return (
         <div>
             {conversationStarted ?
                 <button onClick={() => {
                     setConversationStarted(false);
                     doInitialRequest(
-                        modelInfos.find(modelInfo => modelInfo.type === 'user')?.model ?? "",
-                        modelInfos.find(modelInfo => modelInfo.type === 'assistant')?.model ?? "",
-                        modelInfos.find(modelInfo => modelInfo.type === 'user')?.systemInstructions ?? "",
+                        userModel?.model ?? "",
+                        assistantModel?.model ?? "",
+                        userModel?.systemInstructions ?? "",
                         initialMessage,
-                        modelInfos.find(modelInfo => modelInfo.type === 'assistant')?.systemInstructions ?? ""
+                        assistantModel?.systemInstructions ?? "",
+                        userModel?.nickName ?? "",
+                        assistantModel?.nickName ?? ""
                     ).then(result => {
                         dispatch(updateMessages(result));
                         dispatch(updateConversationId(result.conversationId));

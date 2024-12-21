@@ -4,11 +4,18 @@ import { AppDispatch, RootState } from "../store";
 import { updateMessages } from "../store/reducers/input-action-reducers.ts";
 import Markdown from "react-markdown";
 
-export const MessageDisplay = (props: { message: string, model: string }) => {
-  const { message, model } = props;
+export const MessageDisplay = (props: { message: string, model: string, modelNickname?: string }) => {
+  const { message, model, modelNickname } = props;
+
+  let nameToDisplay = model;
+
+  if (modelNickname != null && modelNickname.length > 0) {
+    nameToDisplay = modelNickname;
+  }
+
   return <>
     <h5>
-      {model}
+      { nameToDisplay }
     </h5>
     <Markdown className={'text-start'}>{message}</Markdown>
   </>;
@@ -32,6 +39,6 @@ export const Conversation = () => {
     })}>
       Continue!
     </button>
-    {messages.map(message => <MessageDisplay key={message.message} message={message.message} model={message.model}/>)}
+    {messages.map(message => <MessageDisplay key={message.message} modelNickname={message.modelNickname} message={message.message} model={message.model}/>)}
   </>
 }
